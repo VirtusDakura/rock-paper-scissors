@@ -124,11 +124,30 @@ class RockPaperScissorsGame {
     
     // Modal close buttons
     document.getElementById('close-stats').addEventListener('click', () => {
-      document.getElementById('stats-modal').classList.add('hidden');
+      this.closeStatsModal();
     });
     
     document.getElementById('close-settings').addEventListener('click', () => {
-      document.getElementById('settings-modal').classList.add('hidden');
+      this.closeSettingsModal();
+    });
+    
+    // Close modals when clicking outside
+    document.getElementById('stats-modal').addEventListener('click', (e) => {
+      if (e.target.id === 'stats-modal') {
+        this.closeStatsModal();
+      }
+    });
+    
+    document.getElementById('settings-modal').addEventListener('click', (e) => {
+      if (e.target.id === 'settings-modal') {
+        this.closeSettingsModal();
+      }
+    });
+    
+    document.getElementById('gameover-modal').addEventListener('click', (e) => {
+      if (e.target.id === 'gameover-modal') {
+        document.getElementById('gameover-modal').classList.add('hidden');
+      }
     });
     
     // Quit game button
@@ -149,8 +168,30 @@ class RockPaperScissorsGame {
     
     // Reset stats button
     document.getElementById('reset-stats').addEventListener('click', () => {
-      if (confirm('Are you sure you want to reset all statistics?')) {
-        this.resetStats();
+      this.showConfirmModal(
+        '⚠️',
+        'Reset Statistics',
+        'Are you sure you want to reset all statistics? This cannot be undone.',
+        () => this.resetStats()
+      );
+    });
+    
+    // Confirmation modal buttons
+    document.getElementById('confirm-cancel-btn').addEventListener('click', () => {
+      this.closeConfirmModal();
+    });
+    
+    document.getElementById('confirm-yes-btn').addEventListener('click', () => {
+      if (this.confirmCallback) {
+        this.confirmCallback();
+      }
+      this.closeConfirmModal();
+    });
+    
+    // Close confirm modal when clicking outside
+    document.getElementById('confirm-modal').addEventListener('click', (e) => {
+      if (e.target.id === 'confirm-modal') {
+        this.closeConfirmModal();
       }
     });
     
@@ -494,10 +535,15 @@ class RockPaperScissorsGame {
   }
   
   quitGame() {
-    if (confirm('Are you sure you want to quit the current game?')) {
-      this.isGameActive = false;
-      this.showModeScreen();
-    }
+    this.showConfirmModal(
+      '🚪',
+      'Quit Game',
+      'Are you sure you want to quit the current game? Your progress will be lost.',
+      () => {
+        this.isGameActive = false;
+        this.showModeScreen();
+      }
+    );
   }
   
   showModeScreen() {
@@ -510,8 +556,29 @@ class RockPaperScissorsGame {
     this.updateStatsDisplay();
   }
   
+  closeStatsModal() {
+    document.getElementById('stats-modal').classList.add('hidden');
+  }
+  
   showSettingsModal() {
     document.getElementById('settings-modal').classList.remove('hidden');
+  }
+  
+  closeSettingsModal() {
+    document.getElementById('settings-modal').classList.add('hidden');
+  }
+  
+  showConfirmModal(icon, title, message, callback) {
+    this.confirmCallback = callback;
+    document.getElementById('confirm-icon').textContent = icon;
+    document.getElementById('confirm-title').textContent = title;
+    document.getElementById('confirm-message').textContent = message;
+    document.getElementById('confirm-modal').classList.remove('hidden');
+  }
+  
+  closeConfirmModal() {
+    document.getElementById('confirm-modal').classList.add('hidden');
+    this.confirmCallback = null;
   }
   
   updateStatsDisplay() {

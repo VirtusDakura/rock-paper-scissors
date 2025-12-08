@@ -1,0 +1,319 @@
+/* ============================================
+   ROCK PAPER SCISSORS - ULTIMATE EDITION
+   Custom Styles & Animations
+   ============================================ */
+
+/* Animations */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+}
+
+@keyframes bounce-in {
+    0% { transform: scale(0); opacity: 0; }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.5); }
+    50% { box-shadow: 0 0 40px rgba(99, 102, 241, 0.8); }
+}
+
+@keyframes confetti {
+    0% { transform: translateY(0) rotateZ(0deg); opacity: 1; }
+    100% { transform: translateY(100vh) rotateZ(360deg); opacity: 0; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Animation Classes */
+.shake { 
+    animation: shake 0.5s ease-in-out; 
+}
+
+.bounce-in { 
+    animation: bounce-in 0.5s ease-out; 
+}
+
+.pulse-glow { 
+    animation: pulse-glow 2s ease-in-out infinite; 
+}
+
+.confetti { 
+    animation: confetti 3s ease-out forwards; 
+}
+
+.fade-in {
+    animation: fadeIn 0.3s ease-out;
+}
+
+.slide-down {
+    animation: slideDown 0.3s ease-out;
+}
+
+/* Button Transitions */
+.choice-btn {
+    transition: all 0.3s ease;
+}
+
+.choice-btn:hover {
+    transform: translateY(-8px) scale(1.05);
+}
+
+.choice-btn:active {
+    transform: translateY(-2px) scale(0.98);
+}
+
+/* Glass Morphism Effect */
+.glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark .glass {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Modal Overlay */
+.modal-overlay {
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+/* Fix for modal display */
+.modal-overlay.hidden {
+    display: none !important;
+}
+
+.modal-overlay:not(.hidden) {
+    display: flex !important;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(99, 102, 241, 0.5);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(99, 102, 241, 0.8);
+}
+
+.dark ::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+    background: rgba(139, 92, 246, 0.5);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+    background: rgba(139, 92, 246, 0.8);
+}
+
+/* Button Hover Effects */
+.mode-btn:hover,
+.difficulty-btn:hover,
+.rounds-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.dark .mode-btn:hover,
+.dark .difficulty-btn:hover,
+.dark .rounds-btn:hover {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+/* Selected State */
+.selected {
+    background: rgba(99, 102, 241, 0.2) !important;
+    border: 2px solid rgba(99, 102, 241, 0.8) !important;
+    transform: scale(1.05);
+}
+
+/* Responsive Grid Adjustments */
+@media (max-width: 768px) {
+    .choice-btn:hover {
+        transform: translateY(-4px) scale(1.02);
+    }
+    
+    .glass {
+        padding: 1rem !important;
+    }
+}
+
+@media (max-width: 640px) {
+    .text-8xl {
+        font-size: 4rem !important;
+    }
+    
+    .text-6xl {
+        font-size: 3rem !important;
+    }
+    
+    .text-5xl {
+        font-size: 2.5rem !important;
+    }
+    
+    .text-4xl {
+        font-size: 2rem !important;
+    }
+    
+    .text-3xl {
+        font-size: 1.5rem !important;
+    }
+}
+
+/* Touch Device Optimization */
+@media (hover: none) and (pointer: coarse) {
+    .choice-btn:hover {
+        transform: none;
+    }
+    
+    .choice-btn:active {
+        transform: scale(0.95);
+    }
+}
+
+/* Prevent text selection on game elements */
+.choice-btn,
+.mode-btn,
+.difficulty-btn,
+.rounds-btn {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Loading State */
+.loading {
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+/* Achievement Badge Effect */
+.achievement-unlocked {
+    animation: bounce-in 0.5s ease-out, pulse-glow 1s ease-in-out 2;
+}
+
+/* Smooth Transitions */
+* {
+    transition-property: background-color, border-color, color, fill, stroke;
+    transition-duration: 200ms;
+    transition-timing-function: ease-in-out;
+}
+
+/* Disable transitions during page load */
+.preload * {
+    transition: none !important;
+}
+
+/* Focus Styles for Accessibility */
+button:focus-visible,
+input:focus-visible {
+    outline: 2px solid rgba(99, 102, 241, 0.8);
+    outline-offset: 2px;
+}
+
+/* Modal Content Scrolling */
+.modal-content {
+    max-height: calc(100vh - 4rem);
+    overflow-y: auto;
+}
+
+/* Gradient Text */
+.gradient-text {
+    background: linear-gradient(to right, #6366f1, #8b5cf6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.dark .gradient-text {
+    background: linear-gradient(to right, #818cf8, #a78bfa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Toggle Switch Styles */
+input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 3rem;
+    height: 1.5rem;
+    background: rgba(156, 163, 175, 0.5);
+    border-radius: 9999px;
+    position: relative;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+input[type="checkbox"]:checked {
+    background: rgba(99, 102, 241, 0.8);
+}
+
+input[type="checkbox"]::before {
+    content: '';
+    position: absolute;
+    width: 1.25rem;
+    height: 1.25rem;
+    background: white;
+    border-radius: 50%;
+    top: 0.125rem;
+    left: 0.125rem;
+    transition: transform 0.3s;
+}
+
+input[type="checkbox"]:checked::before {
+    transform: translateX(1.5rem);
+}
+
+/* Particle Effect Container */
+#confetti-container {
+    pointer-events: none;
+}
+
+/* History Item Animation */
+.history-item {
+    animation: slideDown 0.3s ease-out;
+}
+
+/* Responsive Typography */
+@media (max-width: 480px) {
+    html {
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 1920px) {
+    html {
+        font-size: 18px;
+    }
+}
