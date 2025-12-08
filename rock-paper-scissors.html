@@ -3,10 +3,359 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rock Paper Scissors</title>
+    <title>Rock Paper Scissors - Ultimate Edition</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6366f1',
+                        secondary: '#8b5cf6',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+        @keyframes bounce-in {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.5); }
+            50% { box-shadow: 0 0 40px rgba(99, 102, 241, 0.8); }
+        }
+        @keyframes confetti {
+            0% { transform: translateY(0) rotateZ(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotateZ(360deg); opacity: 0; }
+        }
+        .shake { animation: shake 0.5s ease-in-out; }
+        .bounce-in { animation: bounce-in 0.5s ease-out; }
+        .pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
+        .confetti { animation: confetti 3s ease-out forwards; }
+        .choice-btn {
+            transition: all 0.3s ease;
+        }
+        .choice-btn:hover {
+            transform: translateY(-8px) scale(1.05);
+        }
+        .choice-btn:active {
+            transform: translateY(-2px) scale(0.98);
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .dark .glass {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
 </head>
-<body>
+<body class="bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100 dark:from-gray-900 dark:via-purple-900 dark:to-indigo-900 min-h-screen transition-colors duration-300">
     
+    <!-- Confetti Container -->
+    <div id="confetti-container" class="fixed inset-0 pointer-events-none z-50"></div>
+
+    <!-- Header -->
+    <header class="container mx-auto px-4 py-6">
+        <div class="flex justify-between items-center">
+            <div>
+                <h1 class="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400">
+                    🎮 RPS Ultimate
+                </h1>
+                <p class="text-gray-600 dark:text-gray-300 mt-1">The Ultimate Rock Paper Scissors Experience</p>
+            </div>
+            <div class="flex gap-2">
+                <button id="theme-toggle" class="p-3 rounded-lg glass hover:bg-white/20 dark:hover:bg-black/20 transition-all">
+                    <span class="text-2xl">🌙</span>
+                </button>
+                <button id="stats-btn" class="p-3 rounded-lg glass hover:bg-white/20 dark:hover:bg-black/20 transition-all">
+                    <span class="text-2xl">📊</span>
+                </button>
+                <button id="settings-btn" class="p-3 rounded-lg glass hover:bg-white/20 dark:hover:bg-black/20 transition-all">
+                    <span class="text-2xl">⚙️</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="container mx-auto px-4 py-8">
+        
+        <!-- Game Mode Selection Screen -->
+        <div id="mode-screen" class="max-w-4xl mx-auto">
+            <div class="glass rounded-3xl p-8 mb-6">
+                <h2 class="text-3xl font-bold text-center mb-6 text-gray-800 dark:text-white">Choose Game Mode</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <button class="mode-btn glass p-6 rounded-xl hover:scale-105 transition-all text-left group" data-mode="classic">
+                        <div class="text-4xl mb-2">✊✋✌️</div>
+                        <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">Classic Mode</h3>
+                        <p class="text-gray-600 dark:text-gray-300">Traditional Rock, Paper, Scissors</p>
+                    </button>
+                    <button class="mode-btn glass p-6 rounded-xl hover:scale-105 transition-all text-left group" data-mode="rpsls">
+                        <div class="text-4xl mb-2">✊✋✌️🦎🖖</div>
+                        <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">RPSLS Mode</h3>
+                        <p class="text-gray-600 dark:text-gray-300">Rock, Paper, Scissors, Lizard, Spock</p>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Difficulty Selection -->
+            <div class="glass rounded-3xl p-8 mb-6">
+                <h2 class="text-3xl font-bold text-center mb-6 text-gray-800 dark:text-white">Select Difficulty</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <button class="difficulty-btn glass p-6 rounded-xl hover:scale-105 transition-all text-center" data-difficulty="easy">
+                        <div class="text-4xl mb-2">😊</div>
+                        <h3 class="text-xl font-bold text-green-600 dark:text-green-400 mb-2">Easy</h3>
+                        <p class="text-gray-600 dark:text-gray-300">Random moves</p>
+                    </button>
+                    <button class="difficulty-btn glass p-6 rounded-xl hover:scale-105 transition-all text-center" data-difficulty="medium">
+                        <div class="text-4xl mb-2">🤔</div>
+                        <h3 class="text-xl font-bold text-yellow-600 dark:text-yellow-400 mb-2">Medium</h3>
+                        <p class="text-gray-600 dark:text-gray-300">Pattern detection</p>
+                    </button>
+                    <button class="difficulty-btn glass p-6 rounded-xl hover:scale-105 transition-all text-center" data-difficulty="hard">
+                        <div class="text-4xl mb-2">😈</div>
+                        <h3 class="text-xl font-bold text-red-600 dark:text-red-400 mb-2">Hard</h3>
+                        <p class="text-gray-600 dark:text-gray-300">Counter-strategy AI</p>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Round Selection -->
+            <div class="glass rounded-3xl p-8">
+                <h2 class="text-3xl font-bold text-center mb-6 text-gray-800 dark:text-white">Number of Rounds</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <button class="rounds-btn glass p-4 rounded-xl hover:scale-105 transition-all text-center" data-rounds="3">
+                        <h3 class="text-2xl font-bold text-gray-800 dark:text-white">Best of 3</h3>
+                    </button>
+                    <button class="rounds-btn glass p-4 rounded-xl hover:scale-105 transition-all text-center" data-rounds="5">
+                        <h3 class="text-2xl font-bold text-gray-800 dark:text-white">Best of 5</h3>
+                    </button>
+                    <button class="rounds-btn glass p-4 rounded-xl hover:scale-105 transition-all text-center" data-rounds="7">
+                        <h3 class="text-2xl font-bold text-gray-800 dark:text-white">Best of 7</h3>
+                    </button>
+                    <button class="rounds-btn glass p-4 rounded-xl hover:scale-105 transition-all text-center" data-rounds="endless">
+                        <h3 class="text-2xl font-bold text-gray-800 dark:text-white">Endless ♾️</h3>
+                    </button>
+                </div>
+            </div>
+
+            <button id="start-game-btn" class="w-full mt-6 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white text-2xl font-bold py-6 rounded-2xl transition-all transform hover:scale-105 pulse-glow">
+                Start Game 🚀
+            </button>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="game-screen" class="hidden max-w-6xl mx-auto">
+            
+            <!-- Score Board -->
+            <div class="glass rounded-3xl p-6 mb-6">
+                <div class="grid grid-cols-3 gap-4 text-center">
+                    <div class="bounce-in">
+                        <div class="text-5xl mb-2">👤</div>
+                        <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">You</h3>
+                        <div class="text-4xl font-bold text-indigo-600 dark:text-indigo-400" id="player-score">0</div>
+                    </div>
+                    <div class="flex flex-col justify-center">
+                        <div class="text-gray-600 dark:text-gray-300 mb-2">Round</div>
+                        <div class="text-3xl font-bold text-gray-800 dark:text-white" id="round-counter">1 / 5</div>
+                        <div class="text-sm text-gray-500 dark:text-gray-400 mt-2" id="difficulty-display">Easy Mode</div>
+                    </div>
+                    <div class="bounce-in">
+                        <div class="text-5xl mb-2">🤖</div>
+                        <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">AI</h3>
+                        <div class="text-4xl font-bold text-purple-600 dark:text-purple-400" id="computer-score">0</div>
+                    </div>
+                </div>
+                
+                <!-- Win Streak -->
+                <div class="mt-4 text-center">
+                    <span class="inline-block px-4 py-2 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 text-white font-bold" id="streak-counter">
+                        🔥 Streak: 0
+                    </span>
+                </div>
+            </div>
+
+            <!-- Battle Arena -->
+            <div class="glass rounded-3xl p-8 mb-6">
+                <div class="grid grid-cols-2 gap-8 mb-8">
+                    <div class="text-center">
+                        <div id="player-choice-display" class="text-8xl mb-4 bounce-in">❓</div>
+                        <p class="text-xl text-gray-600 dark:text-gray-300">Your Choice</p>
+                    </div>
+                    <div class="text-center">
+                        <div id="computer-choice-display" class="text-8xl mb-4 bounce-in">❓</div>
+                        <p class="text-xl text-gray-600 dark:text-gray-300">AI's Choice</p>
+                    </div>
+                </div>
+
+                <!-- Result Message -->
+                <div id="result-message" class="text-center mb-6">
+                    <p class="text-3xl font-bold text-gray-800 dark:text-white">Make Your Move!</p>
+                </div>
+
+                <!-- Choice Buttons -->
+                <div id="classic-choices" class="grid grid-cols-3 gap-4">
+                    <button class="choice-btn glass p-6 rounded-2xl text-center" data-choice="rock">
+                        <div class="text-6xl mb-2">✊</div>
+                        <p class="text-xl font-bold text-gray-800 dark:text-white">Rock</p>
+                    </button>
+                    <button class="choice-btn glass p-6 rounded-2xl text-center" data-choice="paper">
+                        <div class="text-6xl mb-2">✋</div>
+                        <p class="text-xl font-bold text-gray-800 dark:text-white">Paper</p>
+                    </button>
+                    <button class="choice-btn glass p-6 rounded-2xl text-center" data-choice="scissors">
+                        <div class="text-6xl mb-2">✌️</div>
+                        <p class="text-xl font-bold text-gray-800 dark:text-white">Scissors</p>
+                    </button>
+                </div>
+
+                <div id="rpsls-choices" class="hidden grid grid-cols-5 gap-3">
+                    <button class="choice-btn glass p-4 rounded-2xl text-center" data-choice="rock">
+                        <div class="text-5xl mb-2">✊</div>
+                        <p class="text-lg font-bold text-gray-800 dark:text-white">Rock</p>
+                    </button>
+                    <button class="choice-btn glass p-4 rounded-2xl text-center" data-choice="paper">
+                        <div class="text-5xl mb-2">✋</div>
+                        <p class="text-lg font-bold text-gray-800 dark:text-white">Paper</p>
+                    </button>
+                    <button class="choice-btn glass p-4 rounded-2xl text-center" data-choice="scissors">
+                        <div class="text-5xl mb-2">✌️</div>
+                        <p class="text-lg font-bold text-gray-800 dark:text-white">Scissors</p>
+                    </button>
+                    <button class="choice-btn glass p-4 rounded-2xl text-center" data-choice="lizard">
+                        <div class="text-5xl mb-2">🦎</div>
+                        <p class="text-lg font-bold text-gray-800 dark:text-white">Lizard</p>
+                    </button>
+                    <button class="choice-btn glass p-4 rounded-2xl text-center" data-choice="spock">
+                        <div class="text-5xl mb-2">🖖</div>
+                        <p class="text-lg font-bold text-gray-800 dark:text-white">Spock</p>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Match History -->
+            <div class="glass rounded-3xl p-6">
+                <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">Match History</h3>
+                <div id="history-container" class="space-y-2 max-h-48 overflow-y-auto">
+                    <!-- History items will be added here -->
+                </div>
+            </div>
+
+            <button id="quit-game-btn" class="w-full mt-6 bg-gray-600 hover:bg-gray-700 text-white text-xl font-bold py-4 rounded-2xl transition-all">
+                Quit Game
+            </button>
+        </div>
+
+    </main>
+
+    <!-- Statistics Modal -->
+    <div id="stats-modal" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="glass rounded-3xl p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-3xl font-bold text-gray-800 dark:text-white">📊 Statistics</h2>
+                <button id="close-stats" class="text-3xl hover:scale-110 transition-transform">❌</button>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-6">
+                <div class="glass p-4 rounded-xl text-center">
+                    <div class="text-3xl font-bold text-green-600 dark:text-green-400" id="total-wins">0</div>
+                    <div class="text-gray-600 dark:text-gray-300">Total Wins</div>
+                </div>
+                <div class="glass p-4 rounded-xl text-center">
+                    <div class="text-3xl font-bold text-red-600 dark:text-red-400" id="total-losses">0</div>
+                    <div class="text-gray-600 dark:text-gray-300">Total Losses</div>
+                </div>
+                <div class="glass p-4 rounded-xl text-center">
+                    <div class="text-3xl font-bold text-yellow-600 dark:text-yellow-400" id="total-ties">0</div>
+                    <div class="text-gray-600 dark:text-gray-300">Total Ties</div>
+                </div>
+                <div class="glass p-4 rounded-xl text-center">
+                    <div class="text-3xl font-bold text-indigo-600 dark:text-indigo-400" id="win-rate">0%</div>
+                    <div class="text-gray-600 dark:text-gray-300">Win Rate</div>
+                </div>
+                <div class="glass p-4 rounded-xl text-center">
+                    <div class="text-3xl font-bold text-purple-600 dark:text-purple-400" id="best-streak">0</div>
+                    <div class="text-gray-600 dark:text-gray-300">Best Streak</div>
+                </div>
+                <div class="glass p-4 rounded-xl text-center">
+                    <div class="text-3xl font-bold text-pink-600 dark:text-pink-400" id="games-played">0</div>
+                    <div class="text-gray-600 dark:text-gray-300">Games Played</div>
+                </div>
+            </div>
+
+            <!-- Achievements -->
+            <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">🏆 Achievements</h3>
+            <div id="achievements-container" class="grid grid-cols-2 md:grid-cols-3 gap-3">
+                <!-- Achievements will be added here -->
+            </div>
+
+            <button id="reset-stats" class="w-full mt-6 bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-xl transition-all">
+                Reset Statistics
+            </button>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="glass rounded-3xl p-8 max-w-md w-full">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-3xl font-bold text-gray-800 dark:text-white">⚙️ Settings</h2>
+                <button id="close-settings" class="text-3xl hover:scale-110 transition-transform">❌</button>
+            </div>
+            
+            <div class="space-y-4">
+                <div class="glass p-4 rounded-xl">
+                    <label class="flex items-center justify-between cursor-pointer">
+                        <span class="text-lg text-gray-800 dark:text-white">🔊 Sound Effects</span>
+                        <input type="checkbox" id="sound-toggle" class="w-12 h-6 rounded-full" checked>
+                    </label>
+                </div>
+                <div class="glass p-4 rounded-xl">
+                    <label class="flex items-center justify-between cursor-pointer">
+                        <span class="text-lg text-gray-800 dark:text-white">🎵 Background Music</span>
+                        <input type="checkbox" id="music-toggle" class="w-12 h-6 rounded-full">
+                    </label>
+                </div>
+                <div class="glass p-4 rounded-xl">
+                    <label class="flex items-center justify-between cursor-pointer">
+                        <span class="text-lg text-gray-800 dark:text-white">✨ Animations</span>
+                        <input type="checkbox" id="animation-toggle" class="w-12 h-6 rounded-full" checked>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Over Modal -->
+    <div id="gameover-modal" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="glass rounded-3xl p-8 max-w-md w-full text-center bounce-in">
+            <div class="text-8xl mb-4" id="gameover-emoji">🎉</div>
+            <h2 class="text-4xl font-bold mb-4" id="gameover-title">You Win!</h2>
+            <p class="text-2xl text-gray-600 dark:text-gray-300 mb-6" id="gameover-message">Final Score: 3 - 2</p>
+            
+            <div class="space-y-3">
+                <button id="play-again-btn" class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white text-xl font-bold py-4 rounded-2xl transition-all">
+                    Play Again 🔄
+                </button>
+                <button id="main-menu-btn" class="w-full bg-gray-600 hover:bg-gray-700 text-white text-xl font-bold py-4 rounded-2xl transition-all">
+                    Main Menu 🏠
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script src="rock-paper-scissors.js"></script>
 </body>
 </html>
