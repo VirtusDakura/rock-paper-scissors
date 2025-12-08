@@ -305,37 +305,41 @@
     </div>
 
     <!-- Game Over Modal -->
-    <div id="gameover-modal" class="hidden fixed inset-0 modal-overlay z-50 flex items-center justify-center p-4">
-        <div class="glass rounded-3xl p-6 sm:p-8 max-w-md w-full text-center bounce-in">
-            <div class="text-6xl sm:text-8xl mb-4" id="gameover-emoji">🎉</div>
-            <h2 class="text-3xl sm:text-4xl font-bold mb-4" id="gameover-title">You Win!</h2>
-            <p class="text-xl sm:text-2xl text-gray-600 dark:text-gray-300 mb-6" id="gameover-message">Final Score: 3 - 2</p>
-            
-            <div class="space-y-3">
-                <button id="play-again-btn" class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white text-lg sm:text-xl font-bold py-3 sm:py-4 rounded-2xl transition-all">
-                    Play Again 🔄
-                </button>
-                <button id="main-menu-btn" class="w-full bg-gray-600 hover:bg-gray-700 text-white text-lg sm:text-xl font-bold py-3 sm:py-4 rounded-2xl transition-all">
-                    Main Menu 🏠
-                </button>
+    <div id="gameover-modal" class="hidden">
+        <div class="fixed inset-0 modal-overlay z-50 flex items-center justify-center p-4">
+            <div class="glass rounded-3xl p-6 sm:p-8 max-w-md w-full text-center bounce-in">
+                <div class="text-6xl sm:text-8xl mb-4" id="gameover-emoji">🎉</div>
+                <h2 class="text-3xl sm:text-4xl font-bold mb-4" id="gameover-title">You Win!</h2>
+                <p class="text-xl sm:text-2xl text-gray-600 dark:text-gray-300 mb-6" id="gameover-message">Final Score: 3 - 2</p>
+                
+                <div class="space-y-3">
+                    <button id="play-again-btn" class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white text-lg sm:text-xl font-bold py-3 sm:py-4 rounded-2xl transition-all">
+                        Play Again 🔄
+                    </button>
+                    <button id="main-menu-btn" class="w-full bg-gray-600 hover:bg-gray-700 text-white text-lg sm:text-xl font-bold py-3 sm:py-4 rounded-2xl transition-all">
+                        Main Menu 🏠
+                    </button>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- Confirmation Modal -->
-    <div id="confirm-modal" class="hidden fixed inset-0 modal-overlay z-50 flex items-center justify-center p-4">
-        <div class="glass rounded-3xl p-6 sm:p-8 max-w-sm w-full text-center fade-in">
-            <div class="text-5xl sm:text-6xl mb-4" id="confirm-icon">⚠️</div>
-            <h2 class="text-2xl sm:text-3xl font-bold mb-3 text-gray-800 dark:text-white" id="confirm-title">Confirm Action</h2>
-            <p class="text-base sm:text-lg text-gray-600 dark:text-gray-300 mb-6" id="confirm-message">Are you sure?</p>
-            
-            <div class="flex gap-3">
-                <button id="confirm-cancel-btn" class="flex-1 bg-gray-500 hover:bg-gray-600 text-white font-bold py-3 rounded-xl transition-all">
-                    Cancel
-                </button>
-                <button id="confirm-yes-btn" class="flex-1 bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-xl transition-all">
-                    Confirm
-                </button>
+    <div id="confirm-modal" class="hidden">
+        <div class="fixed inset-0 modal-overlay z-50 flex items-center justify-center p-4">
+            <div class="glass rounded-3xl p-6 sm:p-8 max-w-sm w-full text-center fade-in">
+                <div class="text-5xl sm:text-6xl mb-4" id="confirm-icon">⚠️</div>
+                <h2 class="text-2xl sm:text-3xl font-bold mb-3 text-gray-800 dark:text-white" id="confirm-title">Confirm Action</h2>
+                <p class="text-base sm:text-lg text-gray-600 dark:text-gray-300 mb-6" id="confirm-message">Are you sure?</p>
+                
+                <div class="flex gap-3">
+                    <button id="confirm-cancel-btn" class="flex-1 bg-gray-500 hover:bg-gray-600 text-white font-bold py-3 rounded-xl transition-all">
+                        Cancel
+                    </button>
+                    <button id="confirm-yes-btn" class="flex-1 bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-xl transition-all">
+                        Confirm
+                    </button>
+                </div>
             </div>
         </div>
     </div>

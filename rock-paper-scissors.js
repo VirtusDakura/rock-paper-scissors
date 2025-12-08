@@ -139,13 +139,13 @@ class RockPaperScissorsGame {
     });
     
     document.getElementById('settings-modal').addEventListener('click', (e) => {
-      if (e.target.id === 'settings-modal') {
+      if (e.target.id === 'settings-modal' || e.target.classList.contains('modal-overlay')) {
         this.closeSettingsModal();
       }
     });
     
     document.getElementById('gameover-modal').addEventListener('click', (e) => {
-      if (e.target.id === 'gameover-modal') {
+      if (e.target.classList.contains('modal-overlay')) {
         document.getElementById('gameover-modal').classList.add('hidden');
       }
     });
@@ -190,7 +190,7 @@ class RockPaperScissorsGame {
     
     // Close confirm modal when clicking outside
     document.getElementById('confirm-modal').addEventListener('click', (e) => {
-      if (e.target.id === 'confirm-modal') {
+      if (e.target.classList.contains('modal-overlay')) {
         this.closeConfirmModal();
       }
     });

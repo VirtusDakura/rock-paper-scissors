@@ -94,15 +94,6 @@
     -webkit-backdrop-filter: blur(4px);
 }
 
-/* Fix for modal display */
-.modal-overlay.hidden {
-    display: none !important;
-}
-
-.modal-overlay:not(.hidden) {
-    display: flex !important;
-}
-
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
     width: 8px;
