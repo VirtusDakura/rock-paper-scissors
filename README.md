@@ -6,12 +6,6 @@ A modern, feature-rich Rock-Paper-Scissors game built with vanilla JavaScript an
 
 
 
-![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)## Features
-
-![JavaScript](https://img.shields.io/badge/javascript-ES6+-yellow.svg)
-
-![TailwindCSS](https://img.shields.io/badge/tailwindcss-3.x-06B6D4.svg)- Play as a human against a computer opponent
-
 - There is an auto play session
 
 ## ✨ Features- Simple text-based interface for quick and fun gameplay
