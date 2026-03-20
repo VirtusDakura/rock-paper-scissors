@@ -6,7 +6,6 @@ A modern, feature-rich Rock-Paper-Scissors game built with vanilla JavaScript an
 
 
 
-- There is an auto play session
 
 ## ✨ Features- Simple text-based interface for quick and fun gameplay
 
