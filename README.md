@@ -1,10 +1,6 @@
-# 🎮 Rock-Paper-Scissors - Ultimate Edition# Rock-Paper-Scissors
-
-
+# 🎮 Rock-Paper-Scissors - Ultimate Edition
 
 A modern, feature-rich Rock-Paper-Scissors game built with vanilla JavaScript and styled with TailwindCSS. This isn't your ordinary RPS game - it's packed with unique features, smart AI, and a beautiful UI!Rock-Paper-Scissors is a simple game written in JavaScript. This game allows users to play the classic hand game "Rock-Paper-Scissors" against the computer.
-
-
 
 
 ## ✨ Features- Simple text-based interface for quick and fun gameplay
@@ -125,17 +121,12 @@ Contributions to improve the game, add new features, or update the interface are
 
 ## 🚀 Quick Start
 
-### Option 1: Clone and Play
+### Clone and Play
 ```bash
 git clone https://github.com/VirtusDakura/rock-paper-scissors.git
 cd rock-paper-scissors
 # Open rock-paper-scissors.html in your browser
 ```
-
-### Option 2: Direct Download
-1. Download the repository as ZIP
-2. Extract files
-3. Open `rock-paper-scissors.html` in any modern browser
 
 ### No Installation Required!
 - No dependencies to install
@@ -152,19 +143,6 @@ cd rock-paper-scissors
   - Web Audio API for sounds
   - LocalStorage API for persistence
   - No external libraries needed!
-
-## 🎯 Code Architecture
-
-```javascript
-class RockPaperScissorsGame {
-  - Game state management
-  - AI difficulty algorithms
-  - Statistics tracking
-  - Event handling
-  - Audio/visual effects
-  - LocalStorage persistence
-}
-```
 
 ### Key Features in Code:
 - **Modular Design**: Clean, organized class-based structure
@@ -223,38 +201,11 @@ Contributions are welcome! Here are some ideas:
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## 📝 Changelog
-
-### Version 2.0.0 (Current)
-- ✨ Complete UI overhaul with TailwindCSS
-- 🤖 Added multiple AI difficulty levels
-- 🎮 Implemented RPSLS mode
-- 🏆 Added achievements system
-- 📊 Built comprehensive statistics tracking
-- 🎨 Added dark/light theme support
-- 🎵 Implemented sound effects
-- ✨ Added animations and visual effects
-- 💾 Added localStorage persistence
-- 📱 Made fully responsive
-
 
 
 ## 📜 License
 
 This project is licensed under the [MIT License](LICENSE).
-
-## 👨‍💻 Author
-
-**VirtusDakura**
-- GitHub: [@VirtusDakura](https://github.com/VirtusDakura)
-
-
-
-## 🐛 Bug Reports & Feature Requests
-
-Found a bug or have a feature idea? [Open an issue](https://github.com/VirtusDakura/rock-paper-scissors/issues)!
-
----
 
 **Made with ❤️ and JavaScript**
 
