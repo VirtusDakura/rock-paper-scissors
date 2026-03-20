@@ -237,10 +237,7 @@ Contributions are welcome! Here are some ideas:
 - 💾 Added localStorage persistence
 - 📱 Made fully responsive
 
-### Version 1.0.0
-- Basic console-based RPS game
-- Simple prompt-based input
-- 5-round gameplay
+
 
 ## 📜 License
 
@@ -251,12 +248,7 @@ This project is licensed under the [MIT License](LICENSE).
 **VirtusDakura**
 - GitHub: [@VirtusDakura](https://github.com/VirtusDakura)
 
-## 🙏 Acknowledgments
 
-- Inspired by the classic hand game
-- RPSLS variant from "The Big Bang Theory"
-- TailwindCSS for the amazing utility-first framework
-- The open-source community
 
 ## 🐛 Bug Reports & Feature Requests
 
