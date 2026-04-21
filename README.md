@@ -164,24 +164,6 @@ Unlock these achievements as you play:
 | Unstoppable | Win 10 in a row | 💪 |
 | Dedicated | Play 100 games | 🎮 |
 
-## 🎨 Screenshots & Demo
-
-### Main Menu
-- Choose game mode (Classic/RPSLS)
-- Select AI difficulty
-- Pick number of rounds
-
-### Game Screen
-- Real-time score tracking
-- Animated choice reveals
-- Match history display
-- Win streak counter
-
-### Statistics Dashboard
-- Comprehensive stats
-- Achievement badges
-- Win rate tracking
-
 ## 🤝 Contributing
 
 Contributions are welcome! Here are some ideas:
