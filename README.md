@@ -271,6 +271,6 @@ Found a bug or have a feature idea? [Open an issue](https://github.com/VirtusDak
 
 ---
 
-**Made with ❤️ and JavaScript**
+**Made with ❤️ By Virtus**
 
 *Enjoy the game and may the odds be ever in your favor! 🎮*
