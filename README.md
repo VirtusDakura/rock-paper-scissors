@@ -1,18 +1,7 @@
-# 🎮 Rock-Paper-Scissors - Ultimate Edition# Rock-Paper-Scissors
-
-
+# 🎮 Rock-Paper-Scissors - Ultimate Edition
 
 A modern, feature-rich Rock-Paper-Scissors game built with vanilla JavaScript and styled with TailwindCSS. This isn't your ordinary RPS game - it's packed with unique features, smart AI, and a beautiful UI!Rock-Paper-Scissors is a simple game written in JavaScript. This game allows users to play the classic hand game "Rock-Paper-Scissors" against the computer.
 
-
-
-![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)## Features
-
-![JavaScript](https://img.shields.io/badge/javascript-ES6+-yellow.svg)
-
-![TailwindCSS](https://img.shields.io/badge/tailwindcss-3.x-06B6D4.svg)- Play as a human against a computer opponent
-
-- There is an auto play session
 
 ## ✨ Features- Simple text-based interface for quick and fun gameplay
 
@@ -132,17 +121,12 @@ Contributions to improve the game, add new features, or update the interface are
 
 ## 🚀 Quick Start
 
-### Option 1: Clone and Play
+### Clone and Play
 ```bash
 git clone https://github.com/VirtusDakura/rock-paper-scissors.git
 cd rock-paper-scissors
 # Open rock-paper-scissors.html in your browser
 ```
-
-### Option 2: Direct Download
-1. Download the repository as ZIP
-2. Extract files
-3. Open `rock-paper-scissors.html` in any modern browser
 
 ### No Installation Required!
 - No dependencies to install
@@ -159,19 +143,6 @@ cd rock-paper-scissors
   - Web Audio API for sounds
   - LocalStorage API for persistence
   - No external libraries needed!
-
-## 🎯 Code Architecture
-
-```javascript
-class RockPaperScissorsGame {
-  - Game state management
-  - AI difficulty algorithms
-  - Statistics tracking
-  - Event handling
-  - Audio/visual effects
-  - LocalStorage persistence
-}
-```
 
 ### Key Features in Code:
 - **Modular Design**: Clean, organized class-based structure
@@ -192,24 +163,6 @@ Unlock these achievements as you play:
 | On Fire! | Win 5 in a row | 🔥 |
 | Unstoppable | Win 10 in a row | 💪 |
 | Dedicated | Play 100 games | 🎮 |
-
-## 🎨 Screenshots & Demo
-
-### Main Menu
-- Choose game mode (Classic/RPSLS)
-- Select AI difficulty
-- Pick number of rounds
-
-### Game Screen
-- Real-time score tracking
-- Animated choice reveals
-- Match history display
-- Win streak counter
-
-### Statistics Dashboard
-- Comprehensive stats
-- Achievement badges
-- Win rate tracking
 
 ## 🤝 Contributing
 
